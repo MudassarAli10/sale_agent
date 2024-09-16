@@ -54,43 +54,45 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Text-to-Speech Multi-Language'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextField(
-                onChanged: (value) => _text = value,
-                maxLines: 3,
-                decoration: const InputDecoration(
-                  hintText: 'Enter text to speak',
-                  border: OutlineInputBorder(),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextField(
+                  onChanged: (value) => _text = value,
+                  maxLines: 3,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter text to speak',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              // Language selection dropdown
-              DropdownButton<String>(
-                value: _selectedLanguage,
-                items: _languages
-                    .map((lang) => DropdownMenuItem<String>(
-                  value: lang as String, // Cast dynamic type to String
-                  child: Text(lang as String),
-                ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    _selectedLanguage = value;
-                  });
-                },
-                isExpanded: true,
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _speak,
-                child: const Text('Speak'),
-              ),
-              _buildSliders(),
-            ],
+                const SizedBox(height: 20),
+                // Language selection dropdown
+                DropdownButton<String>(
+                  value: _selectedLanguage,
+                  items: _languages
+                      .map((lang) => DropdownMenuItem<String>(
+                    value: lang as String, // Cast dynamic type to String
+                    child: Text(lang as String),
+                  ))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedLanguage = value;
+                    });
+                  },
+                  isExpanded: true,
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: _speak,
+                  child: const Text('Speak'),
+                ),
+                _buildSliders(),
+              ],
+            ),
           ),
         ),
       ),
